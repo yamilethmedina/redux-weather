@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchWeather } from '../actions/index';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
 		// making a controlled component
 		constructor(props) {
 			super(props);
@@ -12,6 +12,8 @@ export default class SearchBar extends Component {
 
 			// this (our instance of search bar) has a function called onInputChange. replace the existing onInputChange with the version that has been bound 
 			this.onInputChange = this.onInputChange.bind(this);
+
+			this.onFormSubmit = this.onFormSubmit.bind(this);
 		}
 
 	onInputChange(event) {
@@ -29,6 +31,10 @@ export default class SearchBar extends Component {
 		// list object: an array of objects that are snapshots of weather data (3 hrs at a time) - temps in Kelvin
 
 		// call the ActionCreator with the Ajax request
+
+		this.props.fetchWeather(this.state.term);
+		// clear search input
+		this.setState({ term: '' });
 	}
 	render() {
 		return(
@@ -46,3 +52,11 @@ export default class SearchBar extends Component {
 		);
 	}
 }
+
+function mapDispatchToProps(dispatch) {
+	// whenever the action creator is called and returns an action, bind and make sure it goes down through the middleware
+	return bindActionCreators( {fetchWeather}, dispatch)
+}
+
+// this container doesn't care about Redux's maintained state, so the first argument is null
+export default connect(null, mapDispatchToProps)(SearchBar)
