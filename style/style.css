@@ -3,6 +3,11 @@ td, th {
 	text-align: center !important;
 }
 
+td:first-of-type {
+	height: 200px;
+	min-width: 250px;
+}
+
 .input-group {
 	margin: 20px 0px;
 }

@@ -11,7 +11,7 @@ export default (props) => {
 				<GoogleMap
 					defaultZoom={12}
 					defaultCenter={{ lat: props.lat, lng: props.lon }}
-				>
+				/>
 			}
 		/>
 	);
