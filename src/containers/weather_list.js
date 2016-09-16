@@ -15,7 +15,9 @@ class WeatherList extends Component {
 		const humidities = cityData.list.map(weather => weather.main.humidity);
 		return(
 			<tr key={name}>
-				<td>{name}</td>
+				<td>{name}
+
+				</td>
 				<td>
 					<Chart data={temps} color="orange" units="F"/>
 				</td>
